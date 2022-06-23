@@ -31,44 +31,56 @@ public class EmployeeService {
         return employeeRepo.findAll();
     }
 
-    @Transactional
-    public void updateEmployee(Long id,
-                               String name,
-                               String email,
-                               String employeeCode,
-                               String phone,
-                               String jobTitle){
-
-        Employee newEmployee = employeeRepo.findById(id).orElseThrow(()-> new IllegalStateException(
-                "Student with id " + id + " does not exist"));
-
-        if (name != null && name.length()>0 && !Objects.equals(newEmployee.getName(), name)){
-            newEmployee.setName(name);
-        }
-
-        if (employeeCode != null && employeeCode.length()>0 && !Objects.equals(newEmployee.getEmployeeCode(), employeeCode)){
-            newEmployee.setEmployeeCode(employeeCode);
-        }
-
-        if (phone != null && phone.length()>0 && !Objects.equals(newEmployee.getPhone(), phone)){
-            newEmployee.setPhone(phone);
-        }
-
-        if (jobTitle != null && jobTitle.length()>0 && !Objects.equals(newEmployee.getJobTitle(), jobTitle)){
-            newEmployee.setJobTitle(jobTitle);
-        }
-
-        if (email != null && email.length() > 0 && !Objects.equals(newEmployee.getEmail(), email)){
-            Optional<Employee> optionalEmployee = employeeRepo.findEmployeeByEmail(email);
-            if (optionalEmployee.isPresent()){
-                throw new IllegalStateException("email already exist");
-            }
-            newEmployee.setEmail(email);
-        }
 
 
-        //return employeeRepo.save(employee);
+    public Employee updateEmployee(Employee employee){
+        return employeeRepo.save(employee);
+
     }
+
+//    @Transactional
+//    public void updateEmployee(Long id,
+//                               String name,
+//                               String email,
+//                               String employeeCode,
+//                               String phone,
+//                               String imageUrl,
+//                               String jobTitle){
+//
+//        Employee newEmployee = employeeRepo.findById(id).orElseThrow(()-> new IllegalStateException(
+//                "Student with id " + id + " does not exist"));
+//
+//        if (name != null && name.length()>0 && !Objects.equals(newEmployee.getName(), name)){
+//            newEmployee.setName(name);
+//        }
+//
+//        if (employeeCode != null && employeeCode.length()>0 && !Objects.equals(newEmployee.getEmployeeCode(), employeeCode)){
+//            newEmployee.setEmployeeCode(employeeCode);
+//        }
+//
+//        if (phone != null && phone.length()>0 && !Objects.equals(newEmployee.getPhone(), phone)){
+//            newEmployee.setPhone(phone);
+//        }
+//
+//        if (jobTitle != null && jobTitle.length()>0 && !Objects.equals(newEmployee.getJobTitle(), jobTitle)){
+//            newEmployee.setJobTitle(jobTitle);
+//        }
+//
+//        if (imageUrl != null && imageUrl.length()>0 && !Objects.equals(newEmployee.getImageUrl(), imageUrl)){
+//            newEmployee.setImageUrl(imageUrl);
+//        }
+//
+//        if (email != null && email.length() > 0 && !Objects.equals(newEmployee.getEmail(), email)){
+//            Optional<Employee> optionalEmployee = employeeRepo.findEmployeeByEmail(email);
+//            if (optionalEmployee.isPresent()){
+//                throw new IllegalStateException("email already exist");
+//            }
+//            newEmployee.setEmail(email);
+//        }
+//
+//
+//        //return employeeRepo.save(employee);
+//    }
 
 
     public Employee findEmployeeById(Long id){

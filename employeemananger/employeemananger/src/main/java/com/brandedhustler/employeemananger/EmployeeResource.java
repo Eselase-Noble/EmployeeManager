@@ -40,24 +40,25 @@ public class EmployeeResource {
     }
 
 
-//    @PutMapping("/update")
-//    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
-//        Employee updateEmployee = employeeService.updateEmployee(employee);
-//        return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
-//
-//    }
-
-    @PutMapping(path = "/update/{id}")
-    public void updateStudent(@PathVariable("id") Long  id,
-                              @RequestParam(required = false) String name,
-                              @RequestParam(required = false) String email,
-                              @RequestParam(required = false) String employeeCode,
-                              @RequestParam(required = false) String phone,
-                              @RequestParam(required = false) String jobTitle){
-
-        employeeService.updateEmployee(id, name, email, employeeCode, phone, jobTitle );
+    @PutMapping("/update")
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
+        Employee updateEmployee = employeeService.updateEmployee(employee);
+        return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
 
     }
+
+//    @PutMapping(path = "/update/{id}")
+//    public void updateStudent(@PathVariable("id") Long  id,
+//                              @RequestParam(required = false) String name,
+//                              @RequestParam(required = false) String email,
+//                              @RequestParam(required = false) String employeeCode,
+//                              @RequestParam(required = false) String phone,
+//                              @RequestParam(required = false) String imageUrl,
+//                              @RequestParam(required = false) String jobTitle){
+//
+//        employeeService.updateEmployee(id, name, email, employeeCode, phone, imageUrl ,jobTitle );
+//
+//    }
 
 
     @DeleteMapping("/delete/{id}")
